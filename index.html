@@ -29,9 +29,31 @@
       min-height: 100vh;
     }
 
+    /* Hero Image + Overlay */
+    .hero {
+      position: relative;
+    }
+
     .hero img {
       width: 100%;
       display: block;
+    }
+
+    /* Overlay ad */
+    .ad-overlay {
+      position: absolute;
+      top: 50%;          /* vertical center */
+      left: 50%;         /* horizontal center */
+      transform: translate(-50%, -50%);
+      width: 200px;      /* ad width */
+      height: 100px;     /* ad height */
+      z-index: 10;
+      background: rgba(255,255,255,0.95); /* optional */
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
 
     .content {
@@ -87,6 +109,20 @@
     <!-- Hero Image -->
     <div class="hero">
       <img src="https://raw.githubusercontent.com/mdazharulfreelancer/add/refs/heads/main/a.png" alt="Offer Image">
+
+      <!-- Overlay Ad -->
+      <div class="ad-overlay">
+        <script>
+          atOptions = {
+            'key' : 'a78c697092ffd88caa17cf897edef80c',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+          };
+        </script>
+        <script src="https://www.highperformanceformat.com/a78c697092ffd88caa17cf897edef80c/invoke.js"></script>
+      </div>
     </div>
 
     <!-- Content -->
