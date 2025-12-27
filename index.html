@@ -11,7 +11,6 @@
   <meta property="og:url" content="https://www.effectivegatecpm.com/pckvi82g3?key=5f663ba17689329192572334c06dfeaa" />
   <meta property="og:type" content="website" />
 
-  <!-- Mobile Friendly -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
@@ -42,18 +41,44 @@
     /* Overlay ad */
     .ad-overlay {
       position: absolute;
-      top: 50%;          /* vertical center */
-      left: 50%;         /* horizontal center */
+      top: 50%;
+      left: 50%;
       transform: translate(-50%, -50%);
-      width: 200px;      /* ad width */
-      height: 100px;     /* ad height */
+      width: 200px;
+      height: 100px;
       z-index: 10;
-      background: rgba(255,255,255,0.95); /* optional */
+      background: rgba(255,255,255,0.95);
       border-radius: 6px;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+      transition: opacity 0.3s ease;
+    }
+
+    /* Close Button */
+    .ad-close {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background: #ff4c4c;
+      color: #fff;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      font-size: 16px;
+      line-height: 22px;
+      text-align: center;
+      cursor: pointer;
+      z-index: 20;
+    }
+
+    /* Responsive */
+    @media(max-width: 480px){
+      .ad-overlay {
+        width: 160px;
+        height: 80px;
+      }
     }
 
     .content {
@@ -111,7 +136,8 @@
       <img src="https://raw.githubusercontent.com/mdazharulfreelancer/add/refs/heads/main/a.png" alt="Offer Image">
 
       <!-- Overlay Ad -->
-      <div class="ad-overlay">
+      <div class="ad-overlay" id="overlayAd">
+        <div class="ad-close" id="adClose">&times;</div>
         <script>
           atOptions = {
             'key' : 'a78c697092ffd88caa17cf897edef80c',
@@ -148,6 +174,20 @@
     </div>
 
   </div>
+
+  <script>
+    // Delay showing ad 1.2 sec (optional)
+    const overlay = document.getElementById('overlayAd');
+    overlay.style.opacity = 0;
+    setTimeout(() => {
+      overlay.style.opacity = 1;
+    }, 1200);
+
+    // Close button
+    document.getElementById('adClose').onclick = function() {
+      overlay.style.display = 'none';
+    };
+  </script>
 
 </body>
 </html>
