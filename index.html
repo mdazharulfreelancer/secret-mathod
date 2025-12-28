@@ -15,7 +15,7 @@
 
   <style>
     body {
-      margin: 0;
+    
       font-family: Arial, Helvetica, sans-serif;
       background: #f4f6f8;
       color: #333;
@@ -44,20 +44,38 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 200px;
-      height: 100px;
-      z-index: 10;
-      background: rgba(255,255,255,0.95);
-      border-radius: 6px;
+      width: 80px;
+      height: 80px;
+      z-index: 1;
+      opacity: 0.1;
+      border-radius: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
       box-shadow: 0 4px 10px rgba(0,0,0,0.25);
       transition: opacity 0.3s ease;
+      overflow: hidden;
+      
+    }
+    .add-overlay-plybtn {
+        position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80px;
+      height: 80px;
+      z-index: 1;
+      opacity: 0.9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 100%;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+      transition: opacity 0.3s ease;
     }
 
     /* Close Button */
-    .ad-close {
+    .ad-closes {
       position: absolute;
       top: -10px;
       right: -10px;
@@ -76,7 +94,7 @@
     /* Responsive */
     @media(max-width: 480px){
       .ad-overlay {
-        width: 160px;
+        width: 80px;
         height: 80px;
       }
     }
@@ -132,10 +150,12 @@
   <div class="container">
 
     <!-- Hero Image -->
+     <!---->
     <div class="hero">
-      <img src="https://raw.githubusercontent.com/mdazharulfreelancer/add/refs/heads/main/a.png" alt="Offer Image">
+      <img src="./a.jpg" alt="Offer Image">
 
-      <!-- Overlay Ad -->
+      <div class="add-overlay-plybtn">
+        <img src="./playbtn.png" alt="plybtn">      </div>
       <div class="ad-overlay" id="overlayAd">
         <div class="ad-close" id="adClose">&times;</div>
         <script>
@@ -175,19 +195,7 @@
 
   </div>
 
-  <script>
-    // Delay showing ad 1.2 sec (optional)
-    const overlay = document.getElementById('overlayAd');
-    overlay.style.opacity = 0;
-    setTimeout(() => {
-      overlay.style.opacity = 1;
-    }, 1200);
 
-    // Close button
-    document.getElementById('adClose').onclick = function() {
-      overlay.style.display = 'none';
-    };
-  </script>
 
 </body>
 </html>
