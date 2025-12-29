@@ -1,0 +1,137 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+ background: #f9f9f9;
+  font-family: Arial, sans-serif;
+  color: #fff;
+}
+
+/* HEADER */
+.yt-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+  color: #ff0000;
+}
+
+.search-bar {
+  flex: 1;
+  margin: 0 15px;
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+}
+
+.profile {
+  font-size: 20px;
+}
+
+.topbar {
+  background: #202020;
+  padding: 14px 20px;
+  font-size: 22px;
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  padding: 16px;
+}
+
+.card {
+
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.thumb {
+  position: relative;
+}
+
+.thumb img {
+  width: 100%;
+  display: block;
+}
+
+/* Play button */
+.play-overlay {
+    position: absolute;
+    /* inset: 0; */
+    /* display: flex; */
+    justify-content: center;
+    /* align-items: center; */
+    width: 80px;
+    height: 80px;
+    top: 32%;
+    right: 40%;
+}
+
+.play-overlay img {
+  opacity: 0.9;
+}
+
+/* Ad overlay placeholder (safe) */
+.ad-overlay {
+    position: absolute;
+    /* inset: 0; */
+    /* display: flex; */
+    justify-content: center;
+    /* align-items: center; */
+    width: 80px;
+    height: 80px;
+    top: 32%;
+    right: 40%;
+    overflow: hidden;
+    border-radius: 50%;
+    opacity: 0.1;
+}
+
+/* Info */
+.info {
+  padding: 10px;
+}
+
+.info h3 {
+  font-size: 15px;
+  margin: 0 0 4px;
+  color: #111;
+}
+a {
+
+  text-decoration: none;
+}
+.ad-card{
+    width: 100%;
+    overflow: hidden;
+}
+.info p {
+  font-size: 13px;
+  color: #666;
+  margin: 0;
+}
+
+/* Mobile tweaks */
+@media (max-width: 480px) {
+  .play-overlay img {
+ 
+  }
+}
