@@ -1,221 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Trending Videos</title>
+<meta charset="UTF-8">
+<title>Trending Videos</title>
 
-  <!-- Facebook Preview -->
-  <meta property="og:title" content="🔥 Trending Videos Today">
-  <meta property="og:description" content="Watch the most trending content now">
-  <meta property="og:image" content="https://picsum.photos/1200/630?random=99">
-  <meta property="og:type" content="website">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="home.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #111;
+  color: #fff;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+.yt-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: #222;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.yt-header .logo { font-size: 20px; font-weight: bold; }
+.search-bar { flex: 1; margin: 0 10px; padding: 5px 10px; border-radius: 5px; border: none; }
+.profile { font-size: 20px; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+  gap: 15px;
+  padding: 20px;
+}
+.card, .ad-card {
+  background: #222;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+.card img { width: 100%; display: block; }
+.play-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 50px; height: 50px; }
+.ad-placeholder { padding: 20px; text-align: center; background: #333; color: #ccc; font-size: 16px; }
+</style>
 </head>
+
 <body>
 
-  <!-- HEADER -->
-  <header class="yt-header">
-    <div class="logo">▶ VideoHub</div>
-    <input type="text" placeholder="Search" class="search-bar">
-    <div class="profile">👤</div>
-  </header>
+<header class="yt-header">
+  <div class="logo">▶ VideoHub</div>
+  <input type="text" class="search-bar" placeholder="Search">
+  <div class="profile">👤</div>
+</header>
 
-<main class="grid">
+<main class="grid" id="grid-container"></main>
 
-  <!-- 🔁 COPY-PASTE CARD (50 TIMES) -->
+<script>
+// Container
+const container = document.getElementById("grid-container");
 
+// Create 20 videos + 20 ad placeholders
+for(let i=1; i<=20; i++){
+  // VIDEO CARD
+  const videoCard = document.createElement("div");
+  videoCard.className = "card";
 
-  <!-- CARD 2 -->
-  <div class="card">
-    <div class="thumb">
-      <img src="https://picsum.photos/seed/2/640/360">
-      <div class="play-overlay"><img src="./playbtn.png"></div>
-      <div class="ad-overlay" >
+  const thumbDiv = document.createElement("div");
+  thumbDiv.className = "thumb";
 
-         <script>
-          atOptions = {
-            'key' : 'a78c697092ffd88caa17cf897edef80c',
-            'format' : 'iframe',
-            'height' : 90,
-            'width' : 728,
-            'params' : {}
-          };
-        </script>
-        <script src="https://www.highperformanceformat.com/a78c697092ffd88caa17cf897edef80c/invoke.js"></script>
-   
-    </div>
-    </div>
-    <div class="info">
-    <a href="https://www.effectivegatecpm.com/zug5zxi3?key=3ab6669b3b4e236c6967d33044e8802d">
-      <h3>Stepmom Kenzie Taylor Caught Her New Husband Cheating with Petite Coco</h3>
-      <p>
-OopsFamily | 9.6M views</p>
-    </a>
+  const img = document.createElement("img");
+  img.src = `https://picsum.photos/seed/video${i}/640/360`;
+  img.alt = `Video ${i}`;
 
-    </div>
-  </div>
+  const playOverlay = document.createElement("div");
+  playOverlay.className = "play-overlay";
+  const playImg = document.createElement("img");
+  playImg.src = "./playbtn.png";
+  playImg.alt = "Play";
+  playOverlay.appendChild(playImg);
 
-<!-- 🔥 AD SLOT (MIDDLE) -->
-<div class="ad-card">
-  <div id="adsterra-1"></div>
+  thumbDiv.appendChild(img);
+  thumbDiv.appendChild(playOverlay);
 
-  <script>
-    atOptions = {
-      'key' : 'a78c697092ffd88caa17cf897edef80c',
-      'format' : 'iframe',
-      'height' : 90,
-      'width' : 728,
-      'params' : {}
-    };
-  </script>
-  <script src="https://www.highperformanceformat.com/a78c697092ffd88caa17cf897edef80c/invoke.js"></script>
-</div>
+  const infoDiv = document.createElement("div");
+  infoDiv.className = "info";
+  const title = document.createElement("h3");
+  title.textContent = `Trending Video ${i}`;
+  const views = document.createElement("p");
+  views.textContent = `${Math.floor(Math.random()*10+1)}.${Math.floor(Math.random()*9)}M views`;
+  infoDiv.appendChild(title);
+  infoDiv.appendChild(views);
 
-<!-- 🔥 AD SLOT (MIDDLE) -->
-<div class="ad-card">
-  <div id="adsterra-1"></div>
+  videoCard.appendChild(thumbDiv);
+  videoCard.appendChild(infoDiv);
+  container.appendChild(videoCard);
 
-  <script>
-    atOptions = {
-      'key' : 'a78c697092ffd88caa17cf897edef80c',
-      'format' : 'iframe',
-      'height' : 90,
-      'width' : 728,
-      'params' : {}
-    };
-  </script>
-  <script src="https://www.highperformanceformat.com/a78c697092ffd88caa17cf897edef80c/invoke.js"></script>
-</div>
+  // AD CARD (Blogger style single unit)
+  const adCard = document.createElement("div");
+  adCard.className = "ad-card auto-ad";
 
+  const adPlaceholder = document.createElement("div");
+  adPlaceholder.className = "ad-placeholder";
 
+  // AdSense script
+  const adScript = document.createElement("script");
+  adScript.async = true;
+  adScript.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
 
+  const adIns = document.createElement("ins");
+  adIns.className = "adsbygoogle";
+  adIns.style.display = "block";
+  adIns.setAttribute("data-ad-client", "ca-pub-XXXXXXXXXXXX");
+  adIns.setAttribute("data-ad-slot", "YYYYYYYYYY");
+  adIns.setAttribute("data-ad-format", "auto");
+  adIns.setAttribute("data-full-width-responsive", "true");
 
-  <!-- CARD 2 -->
-  <div class="card">
-    <div class="thumb">
-      <img src="https://picsum.photos/seed/2/640/360">
-      <div class="play-overlay"><img src="./playbtn.png"></div>
-      <div class="ad-overlay" >
+  const pushScript = document.createElement("script");
+  pushScript.textContent = `(adsbygoogle = window.adsbygoogle || []).push({});`;
 
-         <script>
-          atOptions = {
-            'key' : 'a78c697092ffd88caa17cf897edef80c',
-            'format' : 'iframe',
-            'height' : 90,
-            'width' : 728,
-            'params' : {}
-          };
-        </script>
-        <script src="https://www.highperformanceformat.com/a78c697092ffd88caa17cf897edef80c/invoke.js"></script>
-   
-    </div>
-    </div>
-    <div class="info">
-    <a href="https://www.effectivegatecpm.com/zug5zxi3?key=3ab6669b3b4e236c6967d33044e8802d">
-      <h3>Stepfather Caught Virgin Stepdaughter's </h3>
-      <p>
-Horrny-Archana | 4M views</p>
-    </a>
+  adPlaceholder.appendChild(adScript);
+  adPlaceholder.appendChild(adIns);
+  adPlaceholder.appendChild(pushScript);
 
-    </div>
-  </div>
+  adCard.appendChild(adPlaceholder);
+  container.appendChild(adCard);
+}
 
-    <!-- CARD 2 -->
-  <div class="card">
-    <div class="thumb">
-      <img src="https://picsum.photos/seed/2/640/360">
-      <div class="play-overlay"><img src="./playbtn.png"></div>
-      <div class="ad-overlay" >
-
-         <script>
-          atOptions = {
-            'key' : 'a78c697092ffd88caa17cf897edef80c',
-            'format' : 'iframe',
-            'height' : 90,
-            'width' : 728,
-            'params' : {}
-          };
-        </script>
-        <script src="https://www.highperformanceformat.com/a78c697092ffd88caa17cf897edef80c/invoke.js"></script>
-   
-    </div>
-    </div>
-    <div class="info">
-    <a href="https://www.effectivegatecpm.com/zug5zxi3?key=3ab6669b3b4e236c6967d33044e8802d">
-      <h3>Husband Cheating with Petite Coco</h3>
-      <p>
-OopsFamily | 2.3M views</p>
-    </a>
-
-    </div>
-  </div>
-
-    <!-- CARD 2 -->
-  <div class="card">
-    <div class="thumb">
-      <img src="https://picsum.photos/seed/2/640/360">
-      <div class="play-overlay"><img src="./playbtn.png"></div>
-      <div class="ad-overlay" >
-
-         <script>
-          atOptions = {
-            'key' : 'a78c697092ffd88caa17cf897edef80c',
-            'format' : 'iframe',
-            'height' : 90,
-            'width' : 728,
-            'params' : {}
-          };
-        </script>
-        <script src="https://www.highperformanceformat.com/a78c697092ffd88caa17cf897edef80c/invoke.js"></script>
-   
-    </div>
-    </div>
-    <div class="info">
-    <a href="https://www.effectivegatecpm.com/zug5zxi3?key=3ab6669b3b4e236c6967d33044e8802d">
-      <h3>Theme song for the porn would be Phil Collins (I can feel it coming) </h3>
-      <p>
-natyamerica | 5M views</p>
-    </a>
-
-    </div>
-  </div>
-
-    <!-- CARD 2 -->
-  <div class="card">
-    <div class="thumb">
-      <img src="https://picsum.photos/seed/2/640/360">
-      <div class="play-overlay"><img src="./playbtn.png"></div>
-      <div class="ad-overlay" >
-
-         <script>
-          atOptions = {
-            'key' : 'a78c697092ffd88caa17cf897edef80c',
-            'format' : 'iframe',
-            'height' : 90,
-            'width' : 728,
-            'params' : {}
-          };
-        </script>
-        <script src="https://www.highperformanceformat.com/a78c697092ffd88caa17cf897edef80c/invoke.js"></script>
-   
-    </div>
-    </div>
-    <div class="info">
-    <a href="https://www.effectivegatecpm.com/zug5zxi3?key=3ab6669b3b4e236c6967d33044e8802d">
-      <h3>A perfect title for a Paris Hilton sex tape but they went with "One Night in Paris".</h3>
-      <p>
-Horrny-Archana | 4.8M views</p>
-    </a>
-
-    </div>
-  </div>
-
-  <!-- 👉 একইভাবে seed 4 থেকে seed 50 পর্যন্ত copy–paste করো -->
-  <!-- শুধু seed number + title number change করলেই হবে -->
-
-</main>
+// Auto-scroll page after load
+window.addEventListener("load", () => {
+  const scrollSpeed = 1; // px per frame
+  function autoScroll() {
+    const maxScroll = document.body.scrollHeight - window.innerHeight;
+    if(window.scrollY < maxScroll){
+      window.scrollBy(0, scrollSpeed);
+      requestAnimationFrame(autoScroll);
+    }
+  }
+  autoScroll();
+});
+</script>
 
 </body>
 </html>
